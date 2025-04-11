@@ -1,0 +1,19 @@
+metadata:
+  description: |
+    This is a configuration file for nnUNetTrainerFineTuningV2.
+    It is used to fine-tune a pre-trained model on a new dataset.
+    The model is trained with a combination of frozen and unfrozen layers.
+    The encoder is frozen for the first 100 epochs, then unfrozen and trained for 400 epochs.
+    The decoder is trained for 100 epochs with a learning rate of 0.005.
+    The segmentation layers are trained with a learning rate of 0.01.
+  output_path: /home/valentin/data/target/data/nnUNet_results_finetuning_v2_exp2
+
+nnUNetTrainerFineTuningV2:
+  encoder_lr: 0.005
+  decoder_lr: 0.005
+  seglayers_lr: 0.01
+  encoder_frozen: True
+  decoder_frozen: True
+  n_epochs_decoder_frozen: 50
+  n_epochs_encoder_frozen: 100
+  pretrained_encoder_path: "/home/vincent/repos/ssl-bm/weights/cnn3d_nnunet_local_global_100ep_checkpoint.pth"

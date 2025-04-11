@@ -46,15 +46,16 @@ def copy_file(file_to_copy, output_dir, offset=None, dry_run=False):
 def main():
     output_dir = Path(nnunet_raw_dir)
 
-    files = list((target_data_path).rglob("*.nii.gz"))
-    files.sort(key=lambda x: get_number_id(x))
-    biggest_target_id = get_number_id(files[-1])
+    # files = list((target_data_path).rglob("*.nii.gz"))
+    # files.sort(key=lambda x: get_number_id(x))
+    # biggest_target_id = get_number_id(files[-1])
 
-    files = list((brats_data_path).rglob("*.nii.gz"))
-    files.sort(key=lambda x: get_number_id(x))
-    lowest_brats_id = get_number_id(files[0])
+    # files = list((brats_data_path).rglob("*.nii.gz"))
+    # files.sort(key=lambda x: get_number_id(x))
+    # lowest_brats_id = get_number_id(files[0])
 
-    offset_brats = biggest_target_id - lowest_brats_id + 1
+    # offset_brats = biggest_target_id - lowest_brats_id + 1
+    offset_brats = None
 
     for subdir_name in subdirs:
         subdir = output_dir / subdir_name
@@ -66,6 +67,8 @@ def main():
 
         logging.info(f"Processing BRATS data: {brats_data_path}")
         for file in (brats_data_path / subdir_name).glob("*.nii.gz"):
+            if get_number_id(file) < 185:
+                continue
             copy_file(file, subdir, offset=offset_brats, dry_run=dry_run)
         logging.info("DONE.")
 

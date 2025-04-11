@@ -10,6 +10,21 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal"
-        }
+        },
+        {
+            "name": "Python: Debug parse_yaml",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/parse_yaml.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "envFile": "${workspaceFolder}/.env",
+            "args": [
+                "--file",
+                "/home/valentin/workspaces/ssl-brainmet/ssl_brainmet/config/finetuning/nnUNetTrainerFineTuningV2_exp2.yaml",
+                "--key",
+                "metadata.output_path",
+            ]
+        },
     ]
 }
